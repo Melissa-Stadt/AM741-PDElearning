@@ -8,6 +8,7 @@ Adapted from https://github.com/biomathlab/PDElearning
 """
 import numpy as np
 import os
+import time
 
 from PDE_FIND2 import *
 
@@ -72,7 +73,12 @@ elif model_str == 'fisher_nonlin':
 #data files (based on different noise levels) to consider
 data_files = ['00_' + comp_str,'01_' + comp_str,'05_' + comp_str,'10_' + comp_str,'25_' + comp_str,'50_' + comp_str]
 
+# record time
+t0 = time.time()
+
 for d in data_files:
+    
+    print "Elapsed time =", time.time() - t0, " seconds."
 
     #filename to save at
     filename = write_dir + algoName + '_' + d + '_' + shufMethod + '_'+model_str+'_prune_deg_' +str(deg)+ '.npz'
@@ -128,6 +134,8 @@ for d in data_files:
         hparams_list.append(hparams)
         val_score_list.append(val_score)
         TP_score_list.append(TP_TPFPFN(xi_new,description,deriv_list,0))
+        
+print "total time = ", time.time() - t0, " seconds"
            
         #save
         #np.savez(filename,xi_list = xi_list,xi_list_no_prune=xi_list_no_prune,hparams_list=hparams_list,val_score_list=val_score_list,TP_score_list=TP_score_list,

@@ -138,5 +138,5 @@ for d in data_files:
 print "total time = ", time.time() - t0, " seconds"
            
         #save
-        #np.savez(filename,xi_list = xi_list,xi_list_no_prune=xi_list_no_prune,hparams_list=hparams_list,val_score_list=val_score_list,TP_score_list=TP_score_list,
-        #        description=description,deriv_list=deriv_list)
+        np.savez(filename,xi_list = xi_list,xi_list_no_prune=xi_list_no_prune,hparams_list=hparams_list,val_score_list=val_score_list,TP_score_list=TP_score_list,
+               description=description,deriv_list=deriv_list)

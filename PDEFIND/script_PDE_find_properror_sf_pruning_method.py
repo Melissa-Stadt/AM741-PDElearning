@@ -135,8 +135,7 @@ for d in data_files:
         val_score_list.append(val_score)
         TP_score_list.append(TP_TPFPFN(xi_new,description,deriv_list,0))
         
+        #save file
+        np.savez(filename,xi_list = xi_list,xi_list_no_prune=xi_list_no_prune,hparams_list=hparams_list,val_score_list=val_score_list,TP_score_list=TP_score_list, description=description,deriv_list=deriv_list)
+        
 print "total time = ", time.time() - t0, " seconds"
-           
-        #save
-        np.savez(filename,xi_list = xi_list,xi_list_no_prune=xi_list_no_prune,hparams_list=hparams_list,val_score_list=val_score_list,TP_score_list=TP_score_list,
-               description=description,deriv_list=deriv_list)

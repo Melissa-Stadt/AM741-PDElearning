@@ -11,3 +11,7 @@ Properror analyze results_spline_compare.ipynb - ipython notebook to plot the re
 make_learned_eqn_tables.py - Create the tables of learned equations provided in our supplementary material
 
 PDE_FIND2.py -- Our code used to implement the PDE-FIND algorithm
+
+Melissa: added scripting versions of the .ipynb files
+
+script_PDE_find_properror_sf_pruning.py

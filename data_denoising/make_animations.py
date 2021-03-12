@@ -52,7 +52,7 @@ for data_name in data_names:
                 U_t_true = nn.U_t_true             # normalized clean data
 
                 # load predictions
-                surface_data = np.load('data/'+dataset+'.npy').item()
+                surface_data = np.load('data/'+dataset+'.npy',allow_pickle=True).item()
                 U_pred = surface_data['inputs'][0]    # un-normalized prediction
                 U_x_pred = surface_data['inputs'][1]  # un-normalized prediction
                 U_xx_pred = surface_data['inputs'][2] # un-normalized prediction

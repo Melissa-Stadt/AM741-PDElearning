@@ -16,4 +16,4 @@ Melissa: added scripting versions of the .ipynb files
 
 script_PDE_find_properror_sf_pruning_method.py
 
-Melissa: added Figures file that we can upload results from "Properror_analyze_results.ipynb"
+Melissa: added "Figures" directory for results from "Properror_analyze_results.ipynb", added "Learned equations tables" directory for results from "make_learned_eqn_tables.py"

@@ -37,13 +37,13 @@ def fisher_nonlin_cost(q,sigma_str):
         #get data directory
         if model_str == 'diffadv':
             #data_dir = "/home/john/f18/research/EQL/PDE-FIND/code/Data/properror_adasamp_12_7/advection_diffusion_"
-            data_dir = "/content/PDElearning/PDEFIND/Data/diffadv/advection_diffusion_"
+            data_dir = "/content/AM741-PDElearning/PDEFIND/Data/diffadv/advection_diffusion_"
         elif model_str == 'fisher':
             #data_dir = "/home/john/f18/research/EQL/PDE-FIND/code/Data/fisher/fisher_"
-            data_dir = "/content/PDElearning/PDEFIND/Data/fisher/fisher_"
+            data_dir = "/content/AM741-PDElearning/PDEFIND/Data/fisher/fisher_"
         elif model_str == 'fisher_nonlin':
             #data_dir = "/home/john/f18/research/EQL/PDE-FIND/code/Data/nonlin_fisher/fisher_nonlin_"
-            data_dir = "/content/PDElearning/PDEFIND/Data/nonlin_fisher/fisher_nonlin_"
+            data_dir = "/content/AM741-PDElearning/PDEFIND/Data/nonlin_fisher/fisher_nonlin_"
 
         #load in data file
         #mat = np.load(data_dir + sigma_str + '.npy').item()

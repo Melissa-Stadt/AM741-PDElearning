@@ -14,4 +14,4 @@ PDE_FIND2.py -- Our code used to implement the PDE-FIND algorithm
 
 Melissa: added scripting versions of the .ipynb files
 
-script_PDE_find_properror_sf_pruning.py
+script_PDE_find_properror_sf_pruning_method.py

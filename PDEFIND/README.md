@@ -17,3 +17,5 @@ Melissa: added scripting versions of the .ipynb files
 script_PDE_find_properror_sf_pruning_method.py
 
 Melissa: added "Figures" directory for results from "Properror_analyze_results.ipynb", added "Learned equations tables" directory for results from "make_learned_eqn_tables.py"
+
+Melissa: added "NEW_make_learned_eqn_tables.py" <-- seems to have some data name errors in the other make_learned_eqn_tables.py file. This was working for my fisher_nonlin data I had gotten from the pruning PDElearn method

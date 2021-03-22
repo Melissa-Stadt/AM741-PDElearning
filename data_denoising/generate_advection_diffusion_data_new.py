@@ -19,6 +19,7 @@ x = np.arange(0.0, num_x*dx + dx, dx)
 [X,T] = np.meshgrid(x,t);
 
 # equation params
+# Melissa: changed to create new advection diffusion equation
 u0 = 1.50 # initial condition
 x0 = 0.1 # initial location
 D = 0.08 # diffusion coefficient

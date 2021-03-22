@@ -46,7 +46,7 @@ data['U'] = U
 data['U_t'] = U_t
 data['U_x'] = U_x
 data['U_xx'] = U_xx
-np.save('data/advection_diffusion_00',data)
+np.save('data/new_advection_diffusion_00',data)
 
 # 
 # noisy GLS solutions
@@ -66,7 +66,7 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/advection_diffusion_01',data)
+np.save('data/new_advection_diffusion_01',data)
 
 # 5% error
 noise_level = 0.05
@@ -79,7 +79,7 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/advection_diffusion_05',data)
+np.save('data/new_advection_diffusion_05',data)
 
 # 10% error
 noise_level = 0.10
@@ -92,7 +92,7 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/advection_diffusion_10',data)
+np.save('data/new_advection_diffusion_10',data)
 
 # 25% error
 noise_level = 0.25
@@ -105,7 +105,7 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/advection_diffusion_25',data)
+np.save('data/new_advection_diffusion_25',data)
 
 # 50% error
 noise_level = 0.50
@@ -118,4 +118,4 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/advection_diffusion_50',data)
+np.save('data/new_advection_diffusion_50',data)

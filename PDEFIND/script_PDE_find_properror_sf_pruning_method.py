@@ -23,7 +23,7 @@ comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_
 # options are 'nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3'
 
 # mathematical model
-model_str = 'new_diffadv'
+model_str = 'newdiffadv'
 # options are 'diffadv', 'fisher', 'fisher_nonlin', new_diffadv
 
 #create and format data
@@ -72,7 +72,7 @@ for comp_str in comp_strings:
         prune_level = 0.05
         
     elif model_str == 'new_diffadv':
-        data_dir = "Data/new_diffadv/new_advection_diffusion_"
+        data_dir = "Data/newdiffadv/new_advection_diffusion_"
         deriv_list = ['u_{xx}', 'u_{x}']
         prune_level = 0.25 #NOTE: this may need to be changed
         

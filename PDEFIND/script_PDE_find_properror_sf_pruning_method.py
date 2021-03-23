@@ -71,7 +71,7 @@ for comp_str in comp_strings:
         deriv_list = ['uu_{xx}','u_{x}^2','u','u^2']
         prune_level = 0.05
         
-    elif model_str == 'new_diffadv':
+    elif model_str == 'newdiffadv':
         data_dir = "Data/newdiffadv/new_advection_diffusion_"
         deriv_list = ['u_{xx}', 'u_{x}']
         prune_level = 0.25 #NOTE: this may need to be changed

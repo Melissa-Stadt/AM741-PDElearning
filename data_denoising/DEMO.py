@@ -32,7 +32,8 @@ make_global_bsp_data = 0 # make gloval NCV bispline predictions?
 # pick datasets
 #datasets = ['advection_diffusion']
 #datasets = ['advection_diffusion','fisher','fisher_nonlin', 'new_advection_diffusion'] 
-datasets = ['fisher']
+#datasets = ['fisher']
+datasets = ['KdV']
 #datasets = ['new_advection_diffusion'] # need to generate data with new coefficients
 #datasets = ['fisher_nonlin']
 # Note: inds is the noise level

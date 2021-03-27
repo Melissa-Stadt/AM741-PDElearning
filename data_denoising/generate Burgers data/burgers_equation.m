@@ -1,4 +1,6 @@
-%u_t = eta u_xx + uu_x
+% this is to run the burgers equation
+% will create the file burgers_groundtruth.mat
+%Burger's equation: u_t = eta u_xx + uu_x
 
 clear all; close all; 
 

@@ -6,10 +6,9 @@ burgers_equation.m
 
 """
 import numpy as np
+import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
-from PDE_FIND import *
-import scipy.io as sio
-import itertools
+from scipy.io import loadmat
 
 # load data
 data=loadmat('data/burgers_groundtruth.mat')

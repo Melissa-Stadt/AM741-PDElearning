@@ -138,11 +138,13 @@ end % FiniteDifference
 
 % dt is the timestep
 % U_it is the time data
-function U_t_it = FiniteDifference_t(U_time, dt)
-    n = length(U_time);
-    U_t_it = zeros(n-2,1);
-    for ii = 2:n-1
-        jj = ii-1; % index for derivative vectors
-        U_t_it(jj) = (U_time(ii+1)-U_time(ii-1))/(2*dt);
-    end %for
-end %function
+% NOTE: NOT WORKING PROPERLY SO USED FUNCTION DEFINITION
+% TO GET Ut!!!
+% function U_t_it = FiniteDifference_t(U_time, dt)
+%     n = length(U_time);
+%     U_t_it = zeros(n-2,1);
+%     for ii = 2:n-1
+%         jj = ii-1; % index for derivative vectors
+%         U_t_it(jj) = (U_time(ii+1)-U_time(ii-1))/(2*dt);
+%     end %for
+% end %function

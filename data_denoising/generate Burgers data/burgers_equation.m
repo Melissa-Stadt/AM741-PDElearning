@@ -44,7 +44,7 @@ Umin = min(min(U));
 
 % save data
 filename = 'burgers_groundtruth.mat';
-save(filename, 'U','U_t', 'U_x', 'U_xx', 't', 'x')
+save(filename, 'U','U_t', 'U_x', 'U_xx', 't', 'x', 'eta')
 
 
 n_it = length(t)
@@ -90,7 +90,6 @@ figure(99)
 plot(x, burgerIC(x))
 title('initial condition')
 
-[uout,duoutdt] = pdeval(0,t,sol(:,2,1),0.5)
 
     
 %-----------------------------------------------------------------

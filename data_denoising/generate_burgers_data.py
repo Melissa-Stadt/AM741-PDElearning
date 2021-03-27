@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Mar 26 13:59:28 2021
+burgers_groundtruth.mat created using
+burgers_equation.m
 
-@author: melis
 """
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
@@ -11,34 +12,20 @@ import scipy.io as sio
 import itertools
 
 # load data
-data=sio.loadmat('./burgers.mat')
-x= np.squeeze(np.real(data['x'][0]))[1:-1]
-t =np.squeeze(np.real(data['t'][:,0]))[1:-1]
-dt = t[1] - t[0]
-dx = x[2]-x[1]
+data=loadmat('data/burgers_groundtruth.mat')
 
-U = np.real(data['usol'][1:-1, 1:-1])
+eta=data['eta']
+x=np.squeeze(data['x'])[1:-1]
+t=np.squeeze(data['t'])[1:-1]
+U=data['U'][1:-1,1:-1]
+U_t=data['U_t']
+U_x=data['U_x']
+U_xx=data['U_xx']
 
-# first get derivatives U_t, U_x, U_xx
-
-n, m = U.shape
-
-Ut, R, rhs_des = build_linear_system(U, dt, dx, D=2, P=1, time_diff = 'FD', space_diff = 'FD')
-
-U_t = Ut.reshape(len(x), len(t))
-R = np.transpose(R)
-U_x=R[2].reshape(len(x),len(t))
-U_xx = R[4].reshape(len(x),len(t))
-
-# need to transpose U, U_t, U_x, U_xx so in the right shape
-# for the work being done
-U = np.transpose(U)
-U_t = np.transpose(U_t)
-U_x = np.transpose(U_x)
-U_xx = np.transpose(U_xx)
 
 # save as .npy
 data = {}
+data['eta']=eta
 data['x'] = x
 data['t'] = t
 data['U'] = U
@@ -80,6 +67,7 @@ noise_level = 0.10
 U_noise = U + noise_level * np.abs(U)**gamma * np.random.normal(size=U.shape)
 U_noise = (U_noise>0)*U_noise
 data = {}
+data['eta'] = eta
 data['x'] = x
 data['t'] = t
 data['U'] = U_noise

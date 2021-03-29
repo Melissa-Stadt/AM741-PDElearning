@@ -1,44 +1,29 @@
-%generate Fisher ground truth
+%--------------------------------------------------------
+% This file generates the new_fisher_groundtruth.mat
+% data for given classical Fisher-KPP equation data
+% Will compute the solution and the U_t, U_xx, and U_x
+% derivative values using Finite Differences
 
-% creates the fisher_groundtruth.mat values
-% 1: recreate the fisher_groundtruth that 
-% the authors gave
-% 2: verify by making plots/comparing
-% 3: change parameters and make own equation
-%----- use params from the BINNs paper
+% Options to simulate the output and compare to the 
+% original groundtruth data file are there
+%-------------------------------------------------------
 
 clear all; close all;
 
+%------------------------------------------------------------
+% Begin user input
+%------------------------------------------------------------
 
-% this compares to the original grountruth data
-% set to 1 if want to compare
-test = 0;
 % if want to show simulation of FisherKPP set show_sim to 1
-show_sim = 0;
+show_sim = 1;
 
-%------------------------
-% if testing, load original data
-%------------------------
-if test == 1
-    % old file for testing
-    load('fisher_groundtruth.mat')
-    Dold = D;
-    Kold = K;
-    Uold = U;
-    U_told = U_t;
-    U_xold = U_x;
-    U_xxold = U_xx;
-    r_old = r;
-    t_old = t;
-    x_old = x;
-    flag = 1; % full time simulation, note time series must be same
-    flag1 = 1; % show surface plots of original data and new
-    flag2 = 1; % show initial conditions
-else
-    flag = 0;
-    flag1 = 0;
-    flag2 = 0;
-end %testing flags
+% test compares to the original grountruth data
+% set to 1 if want to compare
+% additional flag options in script for simulations
+% default shows all
+test = 0;
+
+
 %----------------------------------------
 %Parameters for Fisher KPP
 %---------------------------------------
@@ -47,11 +32,15 @@ K = 1; % original K = 1
 r = 10; % original r = 10
 params = {D, K, r};
 
+
 % mesh
 x = linspace(-1, 1, 201);
 t = linspace(0,1,101);
 dx = x(2)-x(1);
 dt = t(2) - t(1);
+%-------------------------------------
+% end user input
+%-------------------------------------
 
 % solve PDE
 m=0;
@@ -135,8 +124,29 @@ if show_sim == 1
     hold off
 end %show_sim
 
-
-
+%------------------------
+% if testing, load original data
+%------------------------
+if test == 1
+    % old file for testing
+    load('fisher_groundtruth.mat')
+    Dold = D;
+    Kold = K;
+    Uold = U;
+    U_told = U_t;
+    U_xold = U_x;
+    U_xxold = U_xx;
+    r_old = r;
+    t_old = t;
+    x_old = x;
+    flag = 1; % full time simulation, note time series must be same
+    flag1 = 1; % show surface plots of original data and new
+    flag2 = 1; % show initial conditions
+else
+    flag = 0;
+    flag1 = 0;
+    flag2 = 0;
+end %testing flags
 %----------------------------------------
 % below are figure options for testing
 %----------------------------------------

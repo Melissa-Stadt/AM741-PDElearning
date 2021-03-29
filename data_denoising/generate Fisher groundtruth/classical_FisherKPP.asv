@@ -1,0 +1,202 @@
+%generate Fisher ground truth
+
+% creates the fisher_groundtruth.mat values
+% 1: recreate the fisher_groundtruth that 
+% the authors gave
+% 2: verify by making plots/comparing
+% 3: change parameters and make own equation
+%----- use params from the BINNs paper
+
+clear all; close all;
+
+flag = 0;
+flag1 = 0;
+
+%Parameters for Fisher KPP
+D = 0.0200; % original D
+K = 1; % original K
+r = 10; % original r
+params = {D, K, r};
+
+% mesh
+x = linspace(-1, 1, 201);
+t = linspace(0,1,101);
+dx = x(2)-x(1);
+dt = t(2) - t(1);
+
+% solve PDE
+m=0;
+eqn=@(x,t,u,dudx) FisherPDE(x,t,u,dudx, params);
+ic=@(x) FisherIC(x);
+sol=pdepe(m,eqn,ic,@FisherBC,x,t);
+
+U_new = sol(:,:,1);
+
+% at each time step take the U_x values
+for iter =2:(size(U_new,1)-1)
+    % x values at time t(iter)
+    U_it = U_new(iter,:);
+    [U_x_it, U_xx_it] = FiniteDifferences_x(U_it,dx);
+    U_x_new(iter-1,:) = U_x_it;
+    U_xx_new(iter-1,:) = U_xx_it;
+end %for
+
+%at each spatial step take the U_t values
+for x_iter = 2:(size(U_new,2)-1)
+    disp(x_iter)
+    % time values at each spatial value
+    U_time = U_new(:,x_iter);
+    U_t_it = FiniteDifference_t(U_time,dt);
+    U_t_new(:,x_iter-1) = U_t_it;
+end %for
+
+% figure(3)
+% surf(x,t,U_new)
+% title('Fisher KPP')
+% xlabel('x')
+% ylabel('t')
+% zlabel('U new solution')
+
+% old file for testing
+load('fisher_groundtruth.mat')
+
+% figure(4)
+% surf(x,t,U)
+% title('original fisher KPP')
+% xlabel('x')
+% ylabel('t')
+% zlabel('U original')
+
+
+
+if flag == 1
+    n_it = length(t)
+    x_ends = x(2:end-1);
+    figure(1)
+    hold on
+    for iter =1:n_it-2
+        disp(iter)
+        % original values
+        Uit = U(iter,:);
+        U_xit = U_x(iter,:);
+        U_tit = U_t(iter,:);
+        U_xxit = U_xx(iter,:);
+        
+        % new values
+        Unewit = U_new(iter,:);
+        U_xnewit = U_x_new(iter,:);
+        U_xxnewit = U_xx_new(iter,:);
+        U_tnewit = U_t_new(iter,:);
+        
+        % plot results
+        subplot(2,2,1)
+        % U
+        plot(x,Uit, 'b-', 'linewidth', 2)
+        hold on
+        plot(x,Unewit, 'r--', 'linewidth', 2)
+        xlabel('x')
+        ylabel('U')
+        %legend('U original', 'U_{new}')
+        hold off
+        
+        
+        subplot(2,2,2)
+        % U_x
+        plot(x_ends,U_xit, 'b-', 'linewidth', 2)
+        hold on
+        plot(x_ends,U_xnewit, 'r--', 'linewidth', 2)
+        xlabel('x')
+        ylabel('U_x')
+        hold off
+        
+        
+        subplot(2,2,3)
+        plot(x_ends,U_tit, 'b-','linewidth',2)
+        hold on
+        plot(x_ends, U_tnewit, 
+        xlabel('x')
+        ylabel('U_t')
+        hold off
+        
+        subplot(2,2,4)
+        plot(x_ends,U_xxit, 'b-', 'linewidth', 2)
+        hold on
+        plot(x_ends, U_xxnewit, 'r--', 'linewidth', 2)
+        xlabel('x')
+        ylabel('U_{xx}')
+        hold off
+        pause(0.001)
+    end
+    hold off
+end %flag if
+
+if flag1 == 1
+    figure(2)
+    % initial condition
+    plot(x, U(1,:), 'linewidth', 2)
+    hold on
+    plot(x, FisherIC(x), 'linewidth', 2)
+    xlabel('x')
+    ylabel('U_0')
+    legend('original U0', 'FisherIC')
+    hold off
+end % flag1
+
+
+
+%-------------------------------------------------------------
+% functions used in file
+%-------------------------------------------------------------
+
+% PDE function: classical Fisher-KPP
+function [c,f,s]=FisherPDE(x,t,u,dudx,params)
+D = params{1};
+K = params{2};
+r = params{3};
+c=1;
+f=D*dudx;
+s =r*u*(1-u/K);
+end % PDE
+
+% initial condition
+function u0 = FisherIC(x)
+a = 0.0075;
+b = 0;
+c = 0.03;
+u0 = a/(c*sqrt(2*pi))*exp(-0.5*(x-b).^2/c.^2);
+end %IC
+
+%boundary conditions
+function [pl, ql, pr, qr]=FisherBC(xl,ul,xr,ur,t)
+pl =ul;
+ql=0;
+pr=ur;
+qr=0;
+end %BC
+
+% finite differences for computing derivative
+% computes the first and second derivative of data using 
+% the finite difference method
+% Inputs:
+% dx is the spatial step size
+% U is the spatial data
+function [U_x_it, U_xx_it] = FiniteDifferences_x(U_it, dx)
+    n = length(U_it);
+    U_x_it = zeros(n-2, 1);  % will not have the endpoints
+    U_xx_it = zeros(n-2, 1);
+    for ii = 2:n-1
+        jj = ii - 1; % index for the derivative vectors
+        U_x_it(jj) = (U_it(ii+1)-U_it(ii-1))/(2*dx);
+        U_xx_it(jj) = (U_it(ii+1)-2*U_it(ii) + U_it(ii-1))/dx.^2;
+    end % for
+end % FiniteDifference
+
+function U_t_it = FiniteDifference_t(U_time, dt)
+    n = length(U_time);
+    U_t_it = zeros(n-2,1);
+    for ii = 2:n-1
+        jj = ii-1; % index for derivative vectors
+        U_t_it(jj) = (U_time(ii+1)-U_time(ii-1))/(2*dt);
+    end %for
+end %function
+

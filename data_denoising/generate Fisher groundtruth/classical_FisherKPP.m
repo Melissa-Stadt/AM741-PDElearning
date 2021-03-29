@@ -81,7 +81,7 @@ end %for
 %-------------------------------------
 % save data
 %-------------------------------------
-filename = 'newfisher_groundtruth.mat';
+filename = 'new_fisher_groundtruth.mat';
 save(filename, 'U', 'U_t', 'U_x', 'U_xx', 't', 'x', 'K', 'D', 'r')
 
 if show_sim == 1

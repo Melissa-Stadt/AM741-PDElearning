@@ -13,29 +13,74 @@ clear all; close all;
 %------------------------------------------------------------
 % Begin user input
 %------------------------------------------------------------
+% cell or original gaussian
+% if want cell then set to 1, else gaussian profile
+cell = 0;
 
 % if want to show simulation of FisherKPP set show_sim to 1
-show_sim = 1;
+% NOTE: this is long for cell since time goes to 200
+show_sim = 0;
+
+% if want to show initial condition
+show_IC = 0;
 
 % test compares to the original grountruth data
 % set to 1 if want to compare
 % additional flag options in script for simulations
 % default shows all
 test = 0;
+%------------------------
+% if testing, load original data
+%------------------------
+if test == 1
+    % old file for testing
+    load('fisher_groundtruth.mat')
+    Dold = D;
+    Kold = K;
+    Uold = U;
+    U_told = U_t;
+    U_xold = U_x;
+    U_xxold = U_xx;
+    r_old = r;
+    t_old = t;
+    x_old = x;
+    flag = 1; % full time simulation, note time series must be same
+    flag1 = 1; % show surface plots of original data and new
+    flag2 = 1; % show initial conditions
+else
+    flag = 0;
+    flag1 = 0;
+    flag2 = 0;
+end %testing flags
 
 
 %----------------------------------------
 %Parameters for Fisher KPP
 %---------------------------------------
-D = 0.0200; % original D = 0.02
-K = 1; % original K = 1
-r = 10; % original r = 10
+% cell parameters for initial cell density 10,000 from BINNs paper
+if cell == 1
+    D = 309.7;
+    r = 0.0437;
+    K = 1.7e03;
+else
+    D = 0.05; % original D = 0.02
+    K = 2; % original K = 1
+    r = 15; % original r = 10
+end % if cell
 params = {D, K, r};
 
 
 % mesh
-x = linspace(-1, 1, 201);
-t = linspace(0,1,101);
+if cell == 1
+    x = linspace(0, 2, 201);
+    t_end = 200;
+    t_vals = 20*t_end;
+    t = linspace(0, t_end, t_vals);
+else
+    x = linspace(-1,1,201);
+    t = linspace(0,1,101);
+end
+
 dx = x(2)-x(1);
 dt = t(2) - t(1);
 %-------------------------------------
@@ -45,7 +90,12 @@ dt = t(2) - t(1);
 % solve PDE
 m=0;
 eqn=@(x,t,u,dudx) FisherPDE(x,t,u,dudx, params);
-ic=@(x) FisherIC(x);
+if cell == 1
+    ic=@(x) cell_densityIC(x); % cell density profile
+else
+    ic=@(x) FisherIC(x); % this is for the original model
+end
+
 sol=pdepe(m,eqn,ic,@FisherBC,x,t);
 
 U = sol(:,:,1);
@@ -70,7 +120,11 @@ end %for
 %-------------------------------------
 % save data
 %-------------------------------------
-filename = 'new_fisher_groundtruth.mat';
+if cell == 1
+    filename = 'cell_fisherKPP_groundtruth.mat';
+else
+    filename = 'new_fisher_groundtruth.mat';
+end
 save(filename, 'U', 'U_t', 'U_x', 'U_xx', 't', 'x', 'K', 'D', 'r')
 
 if show_sim == 1
@@ -79,9 +133,9 @@ if show_sim == 1
     figure(1)
     hold on
     for iter =1:n_it-2
-        disp(iter)
+        disp(t(iter))
 
-        % new values
+        % values at iteration
         Uit = U(iter,:);
         U_xit = U_x(iter,:);
         U_xxit = U_xx(iter,:);
@@ -119,34 +173,19 @@ if show_sim == 1
         xlabel('x')
         ylabel('U_{xx}')
         hold off
-        pause(0.001)
+        pause(0.0001)
     end
     hold off
 end %show_sim
 
-%------------------------
-% if testing, load original data
-%------------------------
-if test == 1
-    % old file for testing
-    load('fisher_groundtruth.mat')
-    Dold = D;
-    Kold = K;
-    Uold = U;
-    U_told = U_t;
-    U_xold = U_x;
-    U_xxold = U_xx;
-    r_old = r;
-    t_old = t;
-    x_old = x;
-    flag = 1; % full time simulation, note time series must be same
-    flag1 = 1; % show surface plots of original data and new
-    flag2 = 1; % show initial conditions
-else
-    flag = 0;
-    flag1 = 0;
-    flag2 = 0;
-end %testing flags
+if show_IC == 1
+   figure(50)
+   plot(x, U(1,:))
+   title('initial condition')
+   xlabel('x')
+   ylabel('U')
+end
+
 %----------------------------------------
 % below are figure options for testing
 %----------------------------------------

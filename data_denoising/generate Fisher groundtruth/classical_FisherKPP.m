@@ -15,7 +15,7 @@ clear all; close all;
 %------------------------------------------------------------
 % cell or original gaussian
 % if want cell then set to 1, else gaussian profile
-cell = 0;
+cell = 1;
 
 % if want to show simulation of FisherKPP set show_sim to 1
 % NOTE: this is long for cell since time goes to 200
@@ -73,7 +73,7 @@ params = {D, K, r};
 % mesh
 if cell == 1
     x = linspace(0, 2, 201);
-    t_end = 200;
+    t_end = 5;
     t_vals = 20*t_end;
     t = linspace(0, t_end, t_vals);
 else

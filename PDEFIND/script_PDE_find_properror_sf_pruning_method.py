@@ -19,12 +19,13 @@ User input
 # computational method to consider
 
 #comp_str = 'nn'
-comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3']
+#comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3']
+comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines'] # no global
 # options are 'nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3'
 
 # mathematical model
-model_str = 'burgers'
-# options are 'diffadv', 'fisher', 'fisher_nonlin', new_diffadv, 'burgers'
+model_str = 'new_fisher'
+# options are 'diffadv', 'fisher', 'fisher_nonlin', 'new_fisher'
 
 #create and format data
 skip = 20 #number of initial timepoints to skip

@@ -8,7 +8,8 @@ from IPython.core.debugger import Tracer
 
 import pdb
 
-data_names = ['advection_diffusion','fisher','fisher_nonlin']
+#data_names = ['advection_diffusion','fisher','fisher_nonlin']
+data_names = ['new_advection_diffusion']
 inds = ['00','01','05','10','25','50']
 model_names = ['finite_differences','splines','NCV_bisplines','global_NCV_bisplines_3','nn']
 num_frames = 10 # make sure does not exceed total number of time points

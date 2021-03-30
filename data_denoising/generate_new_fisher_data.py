@@ -8,8 +8,11 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 from scipy.io import loadmat
 
+prefix = input('What is prefix? (e.g. new_fisher)?')
+
 # load solution data from .mat
-data=loadmat('data/new_fisher_groundtruth.mat')
+filename = prefix + '_groundtruth.mat'
+data=loadmat('data/'+filename)
 
 D=data['D']
 r=data['r']
@@ -32,7 +35,8 @@ data['U'] = U
 data['U_t'] = U_t
 data['U_x'] = U_x
 data['U_xx'] = U_xx
-np.save('data/new_fisher_00',data)
+savefile = 'data/'+prefix+'_00'
+np.save(savefile,data)
 
 
 # 
@@ -53,7 +57,8 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/new_fisher_01',data)
+savefile = 'data/'+prefix+'_01'
+np.save(savefile,data)
 
 # 5% error
 noise_level = 0.05
@@ -67,7 +72,8 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/new_fisher_05',data)
+savefile = 'data/'+prefix+'_05'
+np.save(savefile,data)
 
 # 10% error
 noise_level = 0.10
@@ -81,7 +87,8 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/new_fisher_10',data)
+savefile = 'data/'+prefix+'_10'
+np.save(savefile,data)
 
 # 25% error
 noise_level = 0.25
@@ -95,7 +102,8 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/new_fisher_25',data)
+savefile ='data/'+prefix+'_25'
+np.save(savefile,data)
 
 # 50% error
 noise_level = 0.50
@@ -109,5 +117,6 @@ data['x'] = x
 data['t'] = t
 data['U'] = U_noise
 data['gamma'] = gamma
-np.save('data/new_fisher_50',data)
+savefile = 'data/'+prefix+'_50'
+np.save(savefile,data)
 

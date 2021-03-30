@@ -63,8 +63,8 @@ if cell == 1
     r = 0.0437;
     K = 1.7e03;
 else
-    D = 0.05; % original D = 0.02
-    K = 1.1; % original K = 1
+    D = 0.06; % original D = 0.02
+    K = 1; % original K = 1
     r = 8; % original r = 10
 end % if cell
 params = {D, K, r};

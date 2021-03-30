@@ -19,12 +19,13 @@ User input
 # computational method to consider
 
 #comp_str = 'nn'
-comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3']
+#comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3']
+comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines'] # no global
 # options are 'nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3'
 
 # mathematical model
-model_str = 'burgers'
-# options are 'diffadv', 'fisher', 'fisher_nonlin', new_diffadv, 'burgers'
+model_str = 'new_fisher'
+# options are 'diffadv', 'fisher', 'fisher_nonlin', 'new_fisher'
 
 #create and format data
 skip = 20 #number of initial timepoints to skip
@@ -71,15 +72,20 @@ for comp_str in comp_strings:
         deriv_list = ['uu_{xx}','u_{x}^2','u','u^2']
         prune_level = 0.05
         
-    elif model_str == 'newdiffadv':
-        data_dir = "Data/newdiffadv/new_advection_diffusion_"
-        deriv_list = ['u_{xx}', 'u_{x}']
-        prune_level = 0.25 #NOTE: this may need to be changed
-    
-    elif model_str == 'burgers':
-        data_dir = "Data/burgers/burgers_"
-        deriv_list = ['uu_{xx}', 'u_{x}']
+    elif model_str == 'new_fisher':
+        data_dir = "Data/new_fisher/new_fisher_"
+        deriv_list = ['u_{xx}', 'u', 'u^2']
         prune_level = 0.25
+        
+    # elif model_str == 'newdiffadv':
+    #     data_dir = "Data/newdiffadv/new_advection_diffusion_"
+    #     deriv_list = ['u_{xx}', 'u_{x}']
+    #     prune_level = 0.25 #NOTE: this may need to be changed
+    
+    # elif model_str == 'burgers':
+    #     data_dir = "Data/burgers/burgers_"
+    #     deriv_list = ['uu_{xx}', 'u_{x}']
+    #     prune_level = 0.25
         
     #data files (based on different noise levels) to consider
     data_files = ['00_' + comp_str,'01_' + comp_str,'05_' + comp_str,'10_' + comp_str,'25_' + comp_str,'50_' + comp_str]

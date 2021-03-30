@@ -119,4 +119,3 @@ data['U'] = U_noise
 data['gamma'] = gamma
 savefile = 'data/'+prefix+'_50'
 np.save(savefile,data)
-

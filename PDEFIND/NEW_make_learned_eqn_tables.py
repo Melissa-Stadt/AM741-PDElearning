@@ -11,9 +11,10 @@ import statistics, os, pdb
 
 write_dir = 'pickle_data/'
 #math model
-#options are 'diffadv','fisher','fisher_nonlin'
+#options are 'diffadv','fisher','fisher_nonlin', 'new_fisher'
 #model_str_list = ['fisher','fisher_nonlin']#['diffadv']#,'fisher','fisher_nonlin']
-model_str_list = ['fisher_nonlin']
+#model_str_list = ['fisher_nonlin']
+model_str_list = ['new_fisher']
 #noise levels that were considered
 data_files_1 = ['00_','01_','05_','10_','25_','50_']
 data_file_strings = ['0.0','0.01','0.05','0.10','0.25','0.50']
@@ -39,6 +40,10 @@ for model_str in model_str_list:
     elif model_str == 'fisher_nonlin':
         deriv_list = ['uu_{xx}','u_{x}^2','u','u^2']
         true_params = np.array([.02,.02,10,-10])
+    elif model_str == 'new_fisher':
+        deriv_list = ['u_{xx}', 'u', 'u^2']
+        # D, r, -r/K
+        true_params = np.array([0.05, 15, -7.5])
 
     #table heading
     print '\\begin{tabular}{|c|c|c|}'

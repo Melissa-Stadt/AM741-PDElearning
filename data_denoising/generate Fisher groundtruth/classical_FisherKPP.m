@@ -19,7 +19,7 @@ cell = 0;
 
 % if want to show simulation of FisherKPP set show_sim to 1
 % NOTE: this is long for cell since time goes to 200
-show_sim = 0;
+show_sim = 1;
 
 % if want to show initial condition
 show_IC = 0;
@@ -64,8 +64,8 @@ if cell == 1
     K = 1.7e03;
 else
     D = 0.05; % original D = 0.02
-    K = 2; % original K = 1
-    r = 15; % original r = 10
+    K = 1.1; % original K = 1
+    r = 8; % original r = 10
 end % if cell
 params = {D, K, r};
 
@@ -123,7 +123,7 @@ end %for
 if cell == 1
     filename = 'cell_fisherKPP_groundtruth.mat';
 else
-    filename = 'new_fisher_groundtruth.mat';
+    filename = 'new_fisher2_groundtruth.mat';
 end
 save(filename, 'U', 'U_t', 'U_x', 'U_xx', 't', 'x', 'K', 'D', 'r')
 

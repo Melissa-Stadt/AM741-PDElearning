@@ -1,3 +1,7 @@
+'''
+This code is from https://github.com/biomathlab/PDElearning
+'''
+
 import numpy as np
 import matplotlib.pyplot as plt
 import imageio, glob, os, time, surface_fitter
@@ -8,14 +12,15 @@ from IPython.core.debugger import Tracer
 
 import pdb
 
-#data_names = ['advection_diffusion','fisher','fisher_nonlin']
-data_names = ['new_advection_diffusion']
+# user input: set data names (data sets) and noise levels (inds) and denoising method name (model_names)
+data_names = ['advection_diffusion','fisher','fisher_nonlin']
 inds = ['00','01','05','10','25','50']
 model_names = ['finite_differences','splines','NCV_bisplines','global_NCV_bisplines_3','nn']
 num_frames = 10 # make sure does not exceed total number of time points
 
 # loop over data sets
 for data_name in data_names:
+    print data_name
 
     # loop over noise levels
     for ind in inds:

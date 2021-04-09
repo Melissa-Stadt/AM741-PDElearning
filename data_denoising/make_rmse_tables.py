@@ -1,12 +1,23 @@
+'''
+This code is used from https://github.com/biomathlab/PDElearning
+'''
+
 import numpy as np
 import surface_fitter
 
+#-------------------------------------
+# user input
+#-------------------------------------
+# Choose data names, model names, noiselevels for set up in table
 data_names = ['advection_diffusion','advection_diffusion']#,'fisher','fisher_nonlin']
 inds = ['$\sigma = 00$','$\sigma = 01$','$\sigma = 05$','$\sigma = 10$','$\sigma = 25$','$\sigma = 50$']
 model_names = ['finite_differences','bisplines','NCV_bisplines','global_NCV_bisplines_3','nn']
 print_names = ['FD','LCVSP','LNCVSP','GNCVSP','ANN']
 skip = 20
 threshold = 0.0001
+#---------------------------------------
+# end user input
+#--------------------------------------
 
 for data_name in data_names:
     

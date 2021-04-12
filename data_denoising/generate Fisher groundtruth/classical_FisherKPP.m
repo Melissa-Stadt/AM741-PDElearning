@@ -1,7 +1,7 @@
 %--------------------------------------------------------
-% This file generates the new_fisher_groundtruth.mat
+% This file generates the new fisher groundtruth values
 % data for given classical Fisher-KPP equation data
-% Will compute the solution and the U_t, U_xx, and U_x
+% Computes the solution and the U_t, U_xx, and U_x
 % derivative values using Finite Differences
 
 % Options to simulate the output and compare to the 
@@ -13,13 +13,14 @@ clear all; close all;
 %------------------------------------------------------------
 % Begin user input
 %------------------------------------------------------------
-% cell or original gaussian
-% if want cell then set to 1, else gaussian profile
-cell = 1;
+% cell or original gaussian initial condition
+% if want cell data shaped IC then set to 1, else gaussian profile as
+% in the original paper
+cell = 0;
 
 % if want to show simulation of FisherKPP set show_sim to 1
 % NOTE: this is long for cell since time goes to 200
-show_sim = 1;
+show_sim = 0;
 
 % if want to show initial condition
 show_IC = 0;
@@ -123,7 +124,8 @@ end %for
 if cell == 1
     filename = 'cell_fisherKPP_groundtruth.mat';
 else
-    filename = 'new_fisher2_groundtruth.mat';
+    filename = input('filename to save: ');
+    %filename = 'new_fisher2_groundtruth.mat';
 end
 save(filename, 'U', 'U_t', 'U_x', 'U_xx', 't', 'x', 'K', 'D', 'r')
 

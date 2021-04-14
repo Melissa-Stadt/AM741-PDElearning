@@ -1,12 +1,20 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Mar 22 14:51:30 2021
+
+@author: melis
+"""
+
 import numpy as np
 from PDE_FIND2 import *
 import statistics, os, pdb
 
 write_dir = 'pickle_data/'
 #math model
-#options are 'diffadv','fisher','fisher_nonlin'
-model_str_list = ['fisher','fisher_nonlin']#['diffadv']#,'fisher','fisher_nonlin']
-
+#options are 'diffadv','fisher','fisher_nonlin', 'new_fisher'
+#model_str_list = ['fisher','fisher_nonlin']#['diffadv']#,'fisher','fisher_nonlin']
+#model_str_list = ['fisher_nonlin']
+model_str_list = ['new_fisher']
 #noise levels that were considered
 data_files_1 = ['00_','01_','05_','10_','25_','50_']
 data_file_strings = ['0.0','0.01','0.05','0.10','0.25','0.50']
@@ -32,6 +40,10 @@ for model_str in model_str_list:
     elif model_str == 'fisher_nonlin':
         deriv_list = ['uu_{xx}','u_{x}^2','u','u^2']
         true_params = np.array([.02,.02,10,-10])
+    elif model_str == 'new_fisher':
+        deriv_list = ['u_{xx}', 'u', 'u^2']
+        # D, r, -r/K
+        true_params = np.array([0.05, 15, -7.5])
 
     #table heading
     print '\\begin{tabular}{|c|c|c|}'
@@ -40,7 +52,7 @@ for model_str in model_str_list:
     print '    \\hline'
     print '      &  & $' + print_pde_table(true_params,deriv_list) + '$  \\\\  ' 
     print '    \\hline'
-    print '    $\\boldsymbol{\\sigma}$ & \\textbf{Method} & \\textbf{Learned Equation} \\\\ '
+    print '    $\\mathbf{\\sigma}$ & \\textbf{Method} & \\textbf{Learned Equation} \\\\ '
     print '    \\hline'
 
 
@@ -56,12 +68,13 @@ for model_str in model_str_list:
         
 
             #load in data
-            if 'NCV_bisplines' not in m:
-                filename = write_dir + algoName + '_' +d+m+ '_' + shufMethod + '_'+model_str+'_prune_tv_5050_1_21_deg_' +str(deg)+ '.npz'
-            else:
-                filename = write_dir + algoName + '_' +d+m+ '_' + shufMethod + '_'+model_str+'_prune_deg_' +str(deg)+ '.npz'
+            #if 'NCV_bisplines' not in m:
+                #filename = write_dir + algoName + '_' +d+m+ '_' + shufMethod + '_'+model_str+'_prune_tv_5050_1_21_deg_' +str(deg)+ '.npz'
+            #else:
+            filename = write_dir + algoName + '_' +d+m+ '_' + shufMethod + '_'+model_str+'_prune_deg_' +str(deg)+ '.npz'
 
             if os.path.isfile(filename):
+                #print('YES! ' + filename)
 
                 #load in data
                 data = np.load(filename)
@@ -94,6 +107,8 @@ for model_str in model_str_list:
 
                 print ('    '+ data_file_strings[k] +'  &   ' + method_strings[j] + '   &   $' + print_pde_table(np.mean(A,axis=1),data['description']) + '$ \\\\ ')
                 print '    \\hline'
+            #else: Melissa: uncomment to see what the files that are not there are named
+                #print('NO! ' + filename)
                 
 
     print '\\end{tabular}'

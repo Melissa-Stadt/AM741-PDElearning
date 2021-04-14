@@ -7,7 +7,6 @@ This folder contains the code for generating and denoising data. Data and result
 
 #### PDEFIND
 This folder contains the code for implementing PDEFIND. Data and results are also included in this folder.
-Run **script_PDEFIND_properror_sf_pruning.py** to run the PDEFIND algorithm implemented in the study.
 
 
 #### Plotting 

@@ -4,6 +4,7 @@ These files are adapted from https://github.com/biomathlab/PDElearning the code 
 
 #### Data Denoising 
 This folder contains the code for generating and denoising data. Data and results used are also included in this folder.
+Run **script_PDEFIND_properror_sf_pruning.py** to run the PDEFIND algorithm implemented in the study.
 
 #### PDEFIND
 This folder contains the code for implementing PDEFIND. Data and results are also included in this folder.

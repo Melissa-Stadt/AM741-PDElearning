@@ -12,9 +12,7 @@ import statistics, os, pdb
 write_dir = 'pickle_data/'
 #math model
 #options are 'diffadv','fisher','fisher_nonlin', 'new_fisher'
-#model_str_list = ['fisher','fisher_nonlin']#['diffadv']#,'fisher','fisher_nonlin']
-#model_str_list = ['fisher_nonlin']
-model_str_list = ['new_fisher']
+model_str_list = ['diffadv']
 #noise levels that were considered
 data_files_1 = ['00_','01_','05_','10_','25_','50_']
 data_file_strings = ['0.0','0.01','0.05','0.10','0.25','0.50']

@@ -9,7 +9,7 @@ import statistics, os, pdb
 
 write_dir = 'pickle_data/'
 #math model
-#options are 'diffadv','fisher','fisher_nonlin', 'new_fisher', 'new_fisher + num'
+#options are 'diffadv','fisher','fisher_nonlin', 'new_fisher', 'new_fisher + num', 'fisher_10p_red', 'fisher_50p_red', 'fisher_80p_red'
 model_str_list = ['diffadv']
 #noise levels that were considered
 data_files_1 = ['00_','01_','05_','10_','25_','50_']
@@ -17,13 +17,12 @@ data_file_strings = ['0.0','0.01','0.05','0.10','0.25','0.50']
 
 #other specs of implementation
 algoName = 'Greedy'
-shufMethod = 'bins'
+shufMethod = 'bins' # set to 'perm' for fisher_80p_red model
 deg = 2
 
 #methods used for computation, as well as their abbreviations
-methods = ['finite_differences','splines','NCV_bisplines',
-           'global_NCV_bisplines_3','nn']
-method_strings = ['FD','LCVSP','LNCVSP','GNCVSP','ANN']
+methods = ['finite_differences','splines','NCV_bisplines','nn'] #'global_NCV_bisplines_3' (not considered)
+method_strings = ['FD','LCVSP','LNCVSP','ANN'] #'GNCVSP' (not considered)
 
 for model_str in model_str_list:
     #load in true equation form

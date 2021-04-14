@@ -4,7 +4,7 @@ from a groundtruth file for a given prefix
 Input is a user input to indicate how the data is stored
 
 This is adapted from https://github.com/biomathlab/PDElearning to 
-consider a wider variety of data
+consider a wider variety of datanames
 '''
 
 import numpy as np

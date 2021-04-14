@@ -12,12 +12,17 @@ from IPython.core.debugger import Tracer
 
 import pdb
 
-# user input: set data names (data sets) and noise levels (inds) and denoising method name (model_names)
-data_names = ['advection_diffusion','fisher','fisher_nonlin']
-inds = ['00','01','05','10','25','50']
-model_names = ['finite_differences','splines','NCV_bisplines','global_NCV_bisplines_3','nn']
-num_frames = 10 # make sure does not exceed total number of time points
+### User input: set data names (data sets) and noise levels (inds) and denoising method name (model_names)
 
+# Options: fisher, fisher_nonlin, fisher_10p_red, fisher_50p_red, fisher_80p_red, real_scratch
+data_names = ['advection_diffusion']
+# Noise levels
+    # Option for real scratch assay dataset: '20000'
+inds = ['00','01','05','10','25','50'] 
+# Options: 'finite_differences','splines','NCV_bisplines','global_NCV_bisplines_3',
+model_names = ['nn']
+num_frames = 10 # Make sure does not exceed total number of time points (change if running 'fisher_80p_red')
+###
 # loop over data sets
 for data_name in data_names:
     print data_name

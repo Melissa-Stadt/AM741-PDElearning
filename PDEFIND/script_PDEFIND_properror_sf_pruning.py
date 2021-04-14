@@ -22,7 +22,7 @@ comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines'] # no glo
 # options are 'nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3'
 
 # mathematical model
-model_str = 'new_fisher'
+model_str = 'diffadv'
 # options are 'diffadv', 'fisher', 'fisher_nonlin', 'new_fisher'
 
 #create and format data

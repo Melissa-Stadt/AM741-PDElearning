@@ -3,8 +3,6 @@
 Script to run PDE_find_properror_sf_pruning method
 
 Adapted from https://github.com/biomathlab/PDElearning
-
-@author: melis
 """
 import numpy as np
 import os

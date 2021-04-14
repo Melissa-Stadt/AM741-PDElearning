@@ -15,18 +15,16 @@ User input
 '''
 
 # computational method to consider
-
-#comp_str = 'nn'
-#comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3']
-comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines'] # no global
-# options are 'nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3'
+comp_strings = ['nn']
+# options: 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3'
 
 # mathematical model
 model_str = 'diffadv'
-# options are 'diffadv', 'fisher', 'fisher_nonlin', 'new_fisher'
+# options: 'diffadv', 'fisher', 'fisher_nonlin', 'new_fisher', 'fisher_10p_red','fisher_50p_red','fisher_80p_red'
 
-#create and format data
-skip = 20 #number of initial timepoints to skip
+### create and format data
+# number of initial timepoints to skip
+skip = 20 # fisher_80p_red: set skip = 4, fisher_50p_red: set skip = 10
 sample_width = 5 #how much to subsample by (timepoints)
 normalize = 0 #to normalize data or not during PDE-FIND implementation
 deg = 2 # degree of polynomial to use in library
@@ -38,9 +36,10 @@ valPerc = 1-trainPerc
 #number of training-validation splits per data set
 reals = 1000
 
-#how to permute the data
-shufMethod = 'bins' #options are 'perm' (each point randomly split) , 'noperm' (first 
-                    #trainPerc of timepoints given to training data, rest to validation),
+# how to permute the data
+# Note: set to 'perm' to run 'fisher_80p_red'
+shufMethod = 'bins' # options are 'perm' (each point randomly split) , 'noperm' (first 
+                    # trainPerc of timepoints given to training data, rest to validation),
                     #'reverse' (last trainperc of timepoints given to training data, rest
                     # to validation), 'bins' (grouping local spatiotemporal points randomly)
 
@@ -54,6 +53,7 @@ write_dir = 'pickle_data/'
 End user input
 '''
 for comp_str in comp_strings:
+    
     #load data directory, true eqn form, and pruning level for different models
     if model_str == 'diffadv':
         data_dir = "Data/diffadv/advection_diffusion_"
@@ -73,6 +73,21 @@ for comp_str in comp_strings:
     elif model_str == 'new_fisher':
         data_dir = "Data/new_fisher/new_fisher_"
         deriv_list = ['u_{xx}', 'u', 'u^2']
+        prune_level = 0.25
+        
+    elif model_str == 'fisher_10p_red':
+        data_dir = "Data/fisher_10p_red/fisher_10p_red_"
+        deriv_list = ['u_{xx}','u','u^2']
+        prune_level = 0.25
+        
+    elif model_str == 'fisher_50p_red':
+        data_dir = "Data/fisher_50p_red/fisher_50p_red_"
+        deriv_list = ['u_{xx}','u','u^2']
+        prune_level = 0.25
+        
+    elif model_str == 'fisher_80p_red':
+        data_dir = "Data/fisher_80p_red/fisher_80p_red_"
+        deriv_list = ['u_{xx}','u','u^2']
         prune_level = 0.25
         
     # elif model_str == 'newdiffadv':

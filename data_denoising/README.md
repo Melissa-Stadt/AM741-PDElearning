@@ -1,6 +1,6 @@
 This folder contains the code that denoise data and approximate their partial derivatives with various methods.
 
-Run **DEMO.py** to run the data denoising part of the study.
+Run **DEMO.py** to run the data denoising part of the study. Groundtruth files are in the Data/ folder.
 
 **DEMO.py** - contains the code to train a new surface fitting artificial neural network (ANN) or make predictions using the ANN, finite difference, spline, local bi-spline, local NCV bi-spline, or global NCV bi-spline methods. All ANN parameters are stored in the checkpoints folder. All predictions are automatically stored in the data folder. 
 

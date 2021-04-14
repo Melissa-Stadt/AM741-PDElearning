@@ -1,6 +1,6 @@
 This folder contains the code to perform the PDE learning aspect of our study.
 
-Run **script_PDEFIND_properror_sf_pruning.py** to run the PDEFIND algorithm implemented in the study.
+Run **script_PDEFIND_properror_sf_pruning.py** after setting appropriate user defined inputs to run the PDEFIND algorithm implemented in the study.
 
 **script_PDEFIND_properror_sf_pruning.py**--scripting version of PDE_find_properror_sf_pruning.ipynb to be able to run on servers
 

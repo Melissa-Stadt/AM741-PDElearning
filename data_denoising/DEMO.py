@@ -33,13 +33,10 @@ make_bsp_data = 0 # make bispline predictions?
 make_NCV_bsp_data = 0 # make local NCV bispline predictions?
 make_global_bsp_data = 0 # make gloval NCV bispline predictions?
 
-# pick datasets
-#datasets = ['advection_diffusion']
-#datasets = ['advection_diffusion','fisher','fisher_nonlin', 'new_advection_diffusion'] 
-datasets = ['cell_fisher']
-#datasets = ['new_fisher']
-#datasets = ['fisher_nonlin']
-# Note: inds is the noise level
+# pick dataset
+# Options: advection_diffusion, fisher, fisher_nonlin
+datasets = ['advection_diffusion']
+# noise levels
 inds = ['00','01','05','10','25','50']
 
 # pick ANN model name

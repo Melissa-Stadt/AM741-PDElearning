@@ -16,4 +16,4 @@ This folder contains the code that denoise data and approximate their partial de
 
 **generate_advection_diffusion_data.py, generate_fisher_data.py, generate_fisher_nonlin_data.py**  - code to add proportional error to precomputed noiseless datasets and save the noisy versions in the data folder.
 
-Note: The directory PDElearning/surface_fitting/data/ contains the same data as PDElearning/PDEFIND/Data/
+**generate_new_general_data.py** - code to add proportional error to precomputed noiseless datasets given by prefix + '\_groundtruth.mat' and saves the noisy versions in the data file. Requires user input for the name of the groundtruth file

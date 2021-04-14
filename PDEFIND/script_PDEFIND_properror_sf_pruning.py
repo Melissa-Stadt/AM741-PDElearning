@@ -4,7 +4,6 @@ Script to run PDE_find_properror_sf_pruning method
 
 Adapted from https://github.com/biomathlab/PDElearning
 
-@author: melis
 """
 import numpy as np
 import os
@@ -24,8 +23,8 @@ comp_strings = ['nn', 'finite_differences', 'splines', 'NCV_bisplines'] # no glo
 # options are 'nn', 'finite_differences', 'splines', 'NCV_bisplines', 'global_NCV_bisplines_3'
 
 # mathematical model
-model_str = 'new_fisher'
-# options are 'diffadv', 'fisher', 'fisher_nonlin', 'new_fisher'
+model_str = 'diffadv'
+# options are 'diffadv', 'fisher', 'fisher_nonlin', 'new_fisher', 'new_fisher' + num
 
 #create and format data
 skip = 20 #number of initial timepoints to skip

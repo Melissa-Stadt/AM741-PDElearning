@@ -34,7 +34,7 @@ make_NCV_bsp_data = 0 # make local NCV bispline predictions?
 make_global_bsp_data = 0 # make gloval NCV bispline predictions?
 
 # pick dataset
-# Options: advection_diffusion, fisher, fisher_nonlin, fisher_10p_red, fisher_50p_red, fisher_80p_red, real_scratch
+# Options: advection_diffusion, fisher, fisher_nonlin, fisher_10p_red, fisher_50p_red, fisher_80p_red, real_scratch, new_fisher + num
 datasets = ['advection_diffusion']
 # noise levels 
 # Note: to train on the real scratch assay dataset, set inds = ['20000']

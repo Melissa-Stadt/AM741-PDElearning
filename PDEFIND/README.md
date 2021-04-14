@@ -8,9 +8,7 @@ Run **script_PDEFIND_properror_sf_pruning.py** to run the PDEFIND algorithm impl
 
 **Properror analyze results.ipynb** - Once one has performed the PDE-FIND calculations and saved results in the folder "pickle_data", they can plot their results by using this ipython notebook. In the second cell here, the list "model_str_list" specifies which mathematical models will be considered. 
 
-**nonlin_fisher_IP.ipynb** - ipython notebook to perform the inverse problem methodology discussed in Section 3(e) of our study.
-
-**Properror analyze results_spline_compare.ipynb** - ipython notebook to plot the results for comparing 1d- and bispline computations with PDE-FIND, as demonstrated in the supplementary material.
+**nonlin_fisher_IP.ipynb** - ipython notebook to perform the inverse problem methodology discussed in Section 3(e) of Lagergren et al (2020).
 
 **make_learned_eqn_tables.py**- Create the tables of learned equations provided in our supplementary material
 

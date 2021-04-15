@@ -4,6 +4,8 @@ Run **script_PDEFIND_properror_sf_pruning.py** after setting appropriate user de
 
 **script_PDEFIND_properror_sf_pruning.py**--scripting version of PDE_find_properror_sf_pruning.ipynb to be able to run on servers
 
+(Note: To run PDE-FIND and perform pruning on files pertaining to ANN modifications, the file name must be first truncated after "nn" prior to running DEMO.py. Ex: "Greedy_00_nn_bins_diffadv_prune_deg_2_1HL_500N" must be saved as "Greedy_00_nn_bins_diffadv_prune_deg_2".) 
+
 **PDE_find_properror_sf_pruning.ipynb** - ipython notebook to run PDE-FIND implementations. In the second cell, the variable "comp_str"specifies which denoising strategy one wishes to use (nn, finite_differences, splines (meaning cubic bisplines), NCV_bisplines (meaning local cubic bisplines with a GLS error model), or global_NCV_bisplines_3 (meaning global cubic bisplines with a GLS error model) ) and the variable "model_str" specifies which model one wants to consider (diffadv, fisher, fisher_nonlin). The third cell then updates other various aspects of the study, as detailed throughout the paper.
 
 **Properror analyze results.ipynb** - Once one has performed the PDE-FIND calculations and saved results in the folder "pickle_data", they can plot their results by using this ipython notebook. In the second cell here, the list "model_str_list" specifies which mathematical models will be considered. 

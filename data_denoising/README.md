@@ -1,4 +1,4 @@
-This folder contains the code that denoise data and approximate their partial derivatives with various methods.
+This folder contains the code to denoise data and approximate their partial derivatives with various methods.
 
 Run **DEMO.py** specifying the desired user inputs to perform the data denoising part of the study. Groundtruth files are in the Data/ folder and noise can get added using appropriate 'generate_' file.
 
@@ -7,6 +7,8 @@ Run **DEMO.py** specifying the desired user inputs to perform the data denoising
 **make_rmse_tables.py** - Run to generate RMSE tables comparing the different denoising methods. This code computes relative mean square errors (RMSEs) between the true function/derivative values and the approximations.
 
 **make_animations.py** - Run to make animations comparing the true solution, predicted solution, and the data. This code saves a number of plots in the animations folder and combines them into a .gif file. The plots are deleted after the .gif file is complete.
+
+(Note: To generate RMSE tables and animations for files pertaining to ANN modifications, the file name must be first truncated after "nn" prior to running DEMO.py. Ex: "advection_diffusion_00_nn_1HL_2000N.npy" must be saved as "advection_diffusion_00_nn.npy".) 
 
 **prediction_functions.py** - contains the code to forward evaluate the ANN, finite difference, spline, local bi-spline, local NCV bi-spline, and global NCV bi-spline methods
 
